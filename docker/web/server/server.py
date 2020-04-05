@@ -8,6 +8,7 @@ from pathlib import Path
 from aiohttp import web
 from aiohttp.web_exceptions import HTTPServiceUnavailable
 from aiortc import RTCSessionDescription, RTCPeerConnection
+import aiohttp_cors
 
 from kaldi import KaldiSink, kaldi_server_queue
 
@@ -94,6 +95,19 @@ if __name__ == '__main__':
     app.router.add_get('/', index)
     app.router.add_post('/offer', offer)
     app.router.add_static('/static/', path=ROOT / 'static', name='static')
+
+    # Configure default CORS settings.
+    cors = aiohttp_cors.setup(app, defaults={
+        "*": aiohttp_cors.ResourceOptions(
+                allow_credentials=True,
+                expose_headers="*",
+                allow_headers="*",
+            )
+    })
+
+    # Configure CORS on all routes.
+    for route in list(app.router.routes()):
+        cors.add(route)
 
     kaldi_server_queue.load(args.servers)
 
