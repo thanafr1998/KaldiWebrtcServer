@@ -7,7 +7,5 @@ RUN apt-get update && \
 
 RUN pip3 install aiortc aiohttp numpy
 
-RUN git clone https://github.com/danijel3/KaldiWebrtcServer /server
-
 ENTRYPOINT ["python3","/server/server.py"]
 CMD ["--servers","/server/servers.json"]

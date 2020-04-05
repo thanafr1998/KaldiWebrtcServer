@@ -3,8 +3,8 @@ services:
   kaldi:
     image: "danijel3/kaldi-online-tcp:aspire"
   web:
-    image: "danijel3/kaldi-webrtc"
+    build: ./web
     volumes:
-      - ${PWD}/servers.json:/server/servers.json
+      - ./web/server:/server
     ports:
       - "8080:8080"
