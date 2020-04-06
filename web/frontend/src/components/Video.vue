@@ -19,7 +19,7 @@
 
 <script>
 export default {
-  name: 'Test',
+  name: 'Video',
   data: function() {
       return {
           links: [1,2,3,4,5]
