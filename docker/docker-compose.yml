@@ -3,8 +3,14 @@ services:
   kaldi:
     image: "danijel3/kaldi-online-tcp:aspire"
   web:
-    build: ./web
+    build: ./web/server
     volumes:
       - ./web/server:/server
     ports:
       - "8080:8080"
+  frontend:
+    build: ./web/frontend
+    volumes:
+      - ./web/frontend:/usr/src/app
+    ports:
+      - "3000:3000"

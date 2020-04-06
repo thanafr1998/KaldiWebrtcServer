@@ -64,7 +64,7 @@ export default {
         }).then(() => {
             var offer = this.pc.localDescription;
             console.log(offer.sdp);
-            return fetch('http://localhost:8080/offer', {
+            return fetch( process.env.VUE_APP_API + '/offer', {
                 body: JSON.stringify({
                     sdp: offer.sdp,
                     type: offer.type,

@@ -7,5 +7,7 @@ RUN apt-get update && \
 
 RUN pip3 install aiortc aiohttp numpy aiohttp_cors
 
-ENTRYPOINT ["python3","/server/server.py"]
-CMD ["--servers","/server/servers.json"]
+EXPOSE 8080
+
+ENTRYPOINT ["python3","server/server.py"]
+CMD ["--servers","server/servers.json"]
