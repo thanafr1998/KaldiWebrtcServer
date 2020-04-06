@@ -60,18 +60,6 @@ const videoSource = [
     cover3: 'https://img1.wxzxzj.com/vpc-example-cover-weathering-c.jpg',
     source: 'https://media.vued.vanthink.cn/y2mate.com%20-%20Weathering%20With%20You%20%5BOfficial%20Subtitled%20Trailer,%20GKIDS%5D_Q6iK6DjV_iE_1080p.mp4',
     duration: '01:51:00'
-  }, {
-    id: 'usgfiayjqx',
-    title: 'CJ7',
-    author: 'Stephen Chow',
-    date: '2008',
-    desc: "",
-    link: 'https://www.youtube.com/watch?v=bB7KvdTJCzE',
-    cover: 'https://img1.wxzxzj.com/vpc-example-cover-CJ7.png',
-    cover2: 'https://img1.wxzxzj.com/vpc-example-cover-CJ7-v.jpg',
-    cover3: 'https://img1.wxzxzj.com/vpc-example-cover-CJ7-c.jpg',
-    source: 'https://media.vued.vanthink.cn/CJ7%20-%20Trailer.mp4',
-    duration: '00:46:04'
   }];
   
   export default DATA;

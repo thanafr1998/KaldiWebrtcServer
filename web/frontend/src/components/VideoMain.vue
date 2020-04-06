@@ -3,7 +3,10 @@
         <div class="row">
             <div class="col-8">
                 <div class="player-container">
-                    <vue-core-video-player :cover="currentMovie.cover3" :src="currentMovie.source"></vue-core-video-player>
+                    <!--
+                    <vue-core-video-player id='player' :cover="currentMovie.cover3" :src="currentMovie.source"></vue-core-video-player>
+                    -->
+                    <VideoPlayer></VideoPlayer>
                 </div>
                 <div class="movie-detail">
                     <h1 class="title">{{currentMovie.title}}</h1>
@@ -13,28 +16,37 @@
             </div>
             <div class="col-4 play-list">
                 <h2>Play List</h2>
-                <MovieItem v-for="movie in movieList" :key="movie.cover" :item="movie"></MovieItem>
+                <VideoItem v-for="movie in movieList" :key="movie.cover" :item="movie"></VideoItem>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import DATA from '../assets/data'
-import MovieItem from './MovieItem'
+import VideoItem from './VideoItem'
+import VideoPlayer from './VideoPlayer'
 
 export default {
-  name: 'Video',
+  name: 'VideoMain',
   components: {
-    MovieItem
-  },
-  data: function() {
-      return {
-          currentMovie: DATA[2],
-          movieList: DATA,
-      }
+    VideoItem,
+    VideoPlayer
   },
   methods: {
+  },
+  computed: {
+    currentMovie() {
+        return this.$store.state.currentMovie;
+    },
+    currentSource() {
+        return this.$store.state.currentSource;
+    },
+    player() {
+        return this.$store.state.player;
+    },
+    movieList() {
+        return this.$store.state.movieList;
+    }
   }
   
 }

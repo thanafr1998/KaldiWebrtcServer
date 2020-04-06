@@ -17,14 +17,10 @@ export default {
   props: {
     item: Object,
   },
-  name: 'MovieItem',
+  name: 'VideoItem',
   methods: {
     changeMovie () {
-      if (location.search) {
-        location.href = location.href.replace(/\?vid=([a-z]+)/, '?vid=' + this.item.id)
-      } else {
-        location.href = location.href + '?vid=' + this.item.id
-      }
+      this.$store.dispatch('changeMovie', this.item.id);
     }
   },
 }

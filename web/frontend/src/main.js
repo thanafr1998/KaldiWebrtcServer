@@ -3,20 +3,16 @@ import App from './App.vue'
 import VueRouter from 'vue-router'
 import store from './store/store'
 
-import VueCoreVideoPlayer from 'vue-core-video-player'
 import DefaultRecorder from './components/DefaultRecorder'
-import Video from './components/Video'
-import Customer from './components/Customer'
+import VideoMain from './components/VideoMain'
 
 Vue.use(VueRouter)
-Vue.use(VueCoreVideoPlayer)
 
 Vue.config.productionTip = false
 
 const routes = [
     { path: '/default-recorder', component: DefaultRecorder },
-    { path: '/video', component: Video },
-    { path: '/', component: Customer }
+    { path: '/', component: VideoMain }
 ]
 
 
@@ -27,5 +23,5 @@ const router = new VueRouter({
 new Vue({
   render: h => h(App),
   router: router,
-  store: store
+  store: store,
 }).$mount('#app')
