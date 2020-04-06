@@ -1,60 +1,41 @@
-# Kaldi WebRTC server demo
+# About the Docker setup
 
-![](demo.gif)
+There are 3 basic image categories:
 
-This is a demonstration of realtime online speech recognition using the [Kaldi](https://kaldi-asr.org) 
-speech recognition toolkit. 
+* all the Kaldi programs compiled and ready to use stored as *danijel3/kaldi-onlinefork*
+* the above image plus a model, for example *danijel3/kaldi-onlinefork:aspire* (there can be many different models)
+* the web server (which inludes the HTTP and the WebRTC server as described in this repo) stored as *danijel3/kaldi-webrtc*
 
-It uses WebRTC to communicate between the server and the browser. It sends audio from the 
-user's microphone using the WebRTC audio track and sends text from the server to the browser using the WebRTC datachannel
-(most commonly used for sending chat messages).
+To run the server you need the last two images: the model+Kaldi and the webrtc server. They need to be connected to each 
+other through a common network. You can have many Kaldi instances, but need only one webrtc server.
 
-The server program is written in Python. It uses aiohttp to display the web-page and serve other static data (javascript,
-CSS. images). For WebRTC functionality it uses the excellent [aiortc](https://github.com/aiortc/aiortc) library. The 
-system requires only one Python server running, but supports multiple Kaldi instances in the background. Once it receives
-a request from the browser it opens a connection to the Kaldi engine and keeps forwarding audio and text between Kaldi
-and the user's browser.
+## Making your own Kaldi+model image
 
-# Usage
+You can use the sample given in the [model](model) directory. To prepare the image you only need to create a *model* 
+subirectory there (so *model/model*) and put two subdirectories inside:
+* model (ie. *model/model/model*) is for the online acoustic model and contains the following files (usually you get
+this folder by running the *steps/online/prepare_online_decoding.sh* script):
+	* final.mdl
+	* tree 
+	* conf subdirectory
+	* ivectror_extractor subdirectory
+* graph is for the language model, ie HCLG transducer, with the following files:
+	* HCLG.fst
+	* words.txt
 
-The easiest way to use this program is with Docker, as described below. The following section explains how the program
-available here works.
+The model configuration files need to be modified so that the paths inside all point to as if the model dir is stored in the
+root dir, eg:
+* /model/model/ivector_extractor/final.mat
+* /model/model/conf/splice.conf
+* /model/model/conf/online_cmvn.conf 
 
-The server loads a JSON configuration file as an argument to the program. The configuration file defines the hosts and
-ports of the Kaldi engines, as well as their samplerate (different models can have different sample rates).
+Once you create such a folder, you can build the image by running the following command: `docker build -t mymodel .`
 
-In the future, I plan to add the option to include different types of engines (eg. for different languages) that can be 
-picked from the website.
+(You can change the `mymodel` tag to anything you prefer)
 
-After loading the configuration, the server creates a queue and simply takes engines from the queue as they are requested.
-If the queue gets exhausted, an error 500 is returned. Simply put, you need as many engines runnning, as the number of
-concurrent browser sessions you intend to support.
+To test the image, you can run it on its own: `docker run --rm -p 5050:5050 mymodel`
 
-## Kaldi
+Once it's running you can feed it some data using netcat: `nc localhost:5050 < audio.raw`
 
-This server relies on the connection with the `online2-tcp-nnet3-decode-faster` program. If you want to install it on 
-your own, please follow the official instructions for installing Kaldi. You can find a brief version of that in 
-[docker/kaldi/Dockerfile](docker/kaldi/Dockerfile).
-
-## Docker
-
-This is the simplest way of setting up and testing this project. I have created a couple of Docker images with all the
-neccessary components and uploaded them to docker hub. In order to use them, you don't need to copy anything from this
-repository. You just need to have Docker installed and run the commands as described below.
-
-In addition to Docker, you will need to have the `docker-compose` program installed. This program allows to easily start
-several containers at once simply by changing the configuration in a yml file. A sample is provided in 
-[docker/docker-compose.yml](docker/docker-compose.yml).
-
-To run the server, simply copy the [docker/docker-compose.yml](docker/docker-compose.yml) and the required 
-[docker/servers.json](docker/servers.json) files into a folder of your choice and run: `docker-compose up -d`
-
-First time you run it, the program will download the images from Dockerhub so it may take a little while. Once it's running,
-you can run `docker-compose logs -f` to monitor the logs of the running servers.
-
-At any time you can run `docker-compose stop` to temporarily shutdown and `docker-compose start` to restart the service.
-Finally, you can run `docker-compose down` to stop and remove the containers altogether.
-
-If you want to set up more Kaldi engines, you need to edit both the `docker-compose.yml` and `servers.json` files.
-
-More details on the dockerfiles is provided in [this](docker/README.md) document. 
+More instructions on how to use the online decoder with netcat is available at the bottom of 
+[this](https://github.com/danijel3/kaldi/blob/master/src/doc/online_decoding.dox) document.
