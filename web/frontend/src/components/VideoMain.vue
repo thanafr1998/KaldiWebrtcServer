@@ -8,6 +8,7 @@
                     -->
                     <VideoPlayer></VideoPlayer>
                 </div>
+                <ControlBar></ControlBar>
                 <div class="movie-detail">
                     <h1 class="title">{{currentMovie.title}}</h1>
                     <div class="date">{{currentMovie.author}} - {{currentMovie.date}}</div>
@@ -25,12 +26,14 @@
 <script>
 import VideoItem from './VideoItem'
 import VideoPlayer from './VideoPlayer'
+import ControlBar from './ControlBar'
 
 export default {
   name: 'VideoMain',
   components: {
     VideoItem,
-    VideoPlayer
+    VideoPlayer,
+    ControlBar
   },
   methods: {
   },

@@ -15,6 +15,8 @@ export default new Vuex.Store({
     currentMovie: DATA[2],
     movieList: DATA,
     currentSource: DATA[2].source[0],
+    currentSpeed: 1,
+    isLoop: false,
   },
   
   getters: {
@@ -25,10 +27,6 @@ export default new Vuex.Store({
   },
   
   mutations: {
-      // Jenny
-    removeTv(state, amount) {
-        state.totalTvCount -= amount
-    },
 
     //VideoPlayer
     setPlayer(state, player) {
@@ -44,18 +42,34 @@ export default new Vuex.Store({
         state.currentSource = state.currentMovie.source;
         state.player.src = state.currentSource;
       }
+    },
+    setSpeed(state, n){
+      state.currentSpeed = n;
+      state.player.playbackRate = n;
+      console.log('Speed ' + n + 'x')
+    },
+    setResolution(state, n){
+      let targetSource = state.currentMovie.source.filter(source => source.resolution === n)[0];
+      if(targetSource){
+        state.currentSource = targetSource;
+        let time = state.player.currentTime;
+        state.player.src = state.currentSource.src;
+        state.player.currentTime = time;
+        state.player.play();
+        console.log(n + 'p');
+      }
+      else{
+        console.log('Resolution is not available');
+      }
+    },
+    setLoop(state, bl) {
+      state.isLoop = bl;
+      state.player.loop = bl;
+      console.log('Set loop ' + bl);
     }
   },
   
   actions: {
-    // Larry
-    removeTv(context, amount) {
-        // If we enough TVs, ask Jenny to remove it
-        if(context.state.totalTvCount >= amount) {
-          // If we enough TVs, ask Jenny to remove it
-          context.commit('removeTv', amount)
-        }
-    },
 
     //VideoPlayer
     setPlayer(context, player) {
@@ -63,6 +77,15 @@ export default new Vuex.Store({
     },
     changeMovie(context, id) {
       context.commit('changeMovie', id);
+    },
+    setSpeed(context, n) {
+      context.commit('setSpeed', n);
+    },
+    setResolution(context, n) {
+      context.commit('setResolution', n);
+    },
+    setLoop(context, bl) {
+      context.commit('setLoop', bl);
     }
 
 

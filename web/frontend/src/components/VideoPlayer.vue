@@ -4,7 +4,6 @@
             <source v-bind:src="currentSource.src" type="video/mp4">
             Your browser does not support the video tag.
         </video>
-        <br/>
     </div>
 </template>
 
