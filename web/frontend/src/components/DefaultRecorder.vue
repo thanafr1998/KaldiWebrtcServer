@@ -106,6 +106,7 @@ export default {
         this.dc.onmessage = evt => {
             this.statusField = 'Listening...';
             var msg = evt.data;
+            console.log(msg);
             if (msg.endsWith('\n')) {
                 this.lastTrans = this.imcompleteTrans + msg.substring(0, msg.length - 1);
                 this.transcriptionOutput.push(this.lastTrans);
