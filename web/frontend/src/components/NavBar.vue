@@ -18,6 +18,7 @@
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
+    <button class="btn btn-outline-success my-2 my-sm-0 ml-2" @click="process"> {{ (isLogin) ? "Logout": "Login"  }}</button>
   </div>
 </nav>
 </template>
@@ -27,6 +28,22 @@
 export default {
   name: 'NavBar',
   components: {
+  },
+  computed : {
+    isLogin() {
+            return this.$store.state.auth.isLogin;
+    },
+  },
+  methods : {
+    process() {
+      (this.isLogin) ? this.logout() : this.login()
+    },
+    login() {
+      this.$store.dispatch('auth/login', "ADMIN")
+    },
+    logout() {
+      this.$store.dispatch('auth/logout')
+    }
   }
 }
 
