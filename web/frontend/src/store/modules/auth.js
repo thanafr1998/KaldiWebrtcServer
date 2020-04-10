@@ -26,18 +26,25 @@ const mutations =  {
   
 const actions = {
     login({ commit, dispatch}, who) {
-        commit('loading')
         if( state.member.includes(who) ) {
+            dispatch('notification/push',{
+               message : `นาม ${who} ถูกต้อง เข้าใช้งาน ได้`,
+               color : 'success'
+            }, {root:true})
             commit('login',who)
-            dispatch('notification/success', {root:true})
         } else {
-            // context.commit('error')
-            dispatch('notification/error','นาม ไม่ ได้ ลงทะเบียน กับ ระบบ ไว้',{root:true})
+            dispatch('notification/push',{
+                message : 'นาม ไม่ ได้ ลงทะเบียน กับ ระบบ ไว้',
+                color : 'error'
+             }, {root:true})
         }
-        commit('finish')
     },
-    logout(context) {
-        context.commit('logout')
+    logout({commit,dispatch}) {
+        dispatch('notification/push',{
+            message : `นาม ${state.who} ล็อกเอาท์สำเร็จ`,
+            color : 'success'
+         }, {root:true})
+        commit('logout')
     }
 }
 

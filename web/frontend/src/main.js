@@ -19,13 +19,12 @@ const routes = [
 
 
 const router = new VueRouter({
-  mode: "history",
   routes
 })
 
 new Vue({
+  render: h => h(App),
   router: router,
   vuetify,
-  store: store,
-  render: h => h(App)
+  store: store
 }).$mount('#app')

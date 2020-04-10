@@ -37,9 +37,11 @@ export default {
   methods : {
     process() {
       (this.isLogin) ? this.logout() : this.login()
+      // console.log(this.s)
     },
-    login() {
-      this.$store.dispatch('auth/login', "ADMIN")
+    async login() {
+      // this.$store.dispatch('auth/login', "ADMIN")
+      this.$store.dispatch('auth/login', "บี")
     },
     logout() {
       this.$store.dispatch('auth/logout')

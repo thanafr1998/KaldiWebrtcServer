@@ -20,6 +20,7 @@
                 <VideoItem v-for="movie in movieList" :key="movie.cover" :item="movie"></VideoItem>
             </div>
         </div>
+        <SnackAlert />
     </div>
 </template>
 
@@ -27,13 +28,15 @@
 import VideoItem from '../components/VideoItem'
 import VideoPlayer from '../components/VideoPlayer'
 import ControlBar from '../components/ControlBar'
+import SnackAlert from '../components/SnackBar'
 
 export default {
   name: 'VideoMain',
   components: {
     VideoItem,
     VideoPlayer,
-    ControlBar
+    ControlBar,
+    SnackAlert
   },
   methods: {
   },

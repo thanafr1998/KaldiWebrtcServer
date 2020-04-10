@@ -1,37 +1,30 @@
-const state = {
-    isLoading: false,
-    isSuccess: false,
-    isError: false,
-    errorMessage: null,
+const state =  {
+  isOpen: false,
+  color: "",
+  message: ""
 }
-
-const actions = {
-    error({commit}, errorMessage) {
-      alert()
-      commit('error', errorMessage)
-    },
-    success({commit}) {
-      commit('success')
-    }
-}
-  
 const mutations = {
-    loading(state) {
-      state.isLoading = true
-      state.isSuccess = false
-      state.isError = false
-    },
-    success(state) {
-      state.isSuccess = true
-      state.isError = false
-      state.isLoading = false
-    },
-    error(state, errorMessage) {
-      state.errorMessage = errorMessage
-      state.isError = true
-      state.isSuccess = false
-      state.isLoading = false
-    }
+   push( state,payload) {
+    state.isOpen = true;
+    state.message = payload.message;
+    state.color = payload.color;
+   },
+  reset(state) {
+    state.isOpen = false;
+    state.message = "";
+    state.color = "";
+  }
+}
+let number;
+const actions= {
+  push({ commit }, payload) {
+    clearTimeout(number)
+    commit('push', payload);
+    number = setTimeout(() => commit('reset'), 2500);
+  },
+  reset ({ commit }) {
+    commit('reset');
+  }
 }
 
 export default {
