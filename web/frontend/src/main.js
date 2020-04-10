@@ -5,6 +5,7 @@ import store from '@/store'
 
 import DefaultRecorder from './components/DefaultRecorder'
 import VideoMain from './views/VideoMain'
+import vuetify from './plugins/vuetify';
 
 
 Vue.use(VueRouter)
@@ -18,11 +19,13 @@ const routes = [
 
 
 const router = new VueRouter({
+  mode: "history",
   routes
 })
 
 new Vue({
-  render: h => h(App),
   router: router,
+  vuetify,
   store: store,
+  render: h => h(App)
 }).$mount('#app')
