@@ -24,9 +24,9 @@
 </template>
 
 <script>
-import VideoItem from './VideoItem'
-import VideoPlayer from './VideoPlayer'
-import ControlBar from './ControlBar'
+import VideoItem from '../components/VideoItem'
+import VideoPlayer from '../components/VideoPlayer'
+import ControlBar from '../components/ControlBar'
 
 export default {
   name: 'VideoMain',
