@@ -39,16 +39,16 @@ export default {
   },
   computed: {
     currentMovie() {
-        return this.$store.state.currentMovie;
+        return this.$store.state.video.currentMovie;
     },
     currentSource() {
-        return this.$store.state.currentSource;
+        return this.$store.state.video.currentSource;
     },
     player() {
-        return this.$store.state.player;
+        return this.$store.state.video.player;
     },
     movieList() {
-        return this.$store.state.movieList;
+        return this.$store.state.video.movieList;
     }
   }
   

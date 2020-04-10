@@ -1,4 +1,4 @@
-import DATA from '../assets/data'
+import DATA from '../../assets/data'
 
 const state = {
     totalTvCount: 10, // The TV inventory
@@ -12,17 +12,16 @@ const state = {
     currentSource: DATA[2].source[0],
     currentSpeed: 1,
     isLoop: false,
-},
+}
   
 const getters = {
     // Check if both Larry and Jenny are happy
     happyStaff: state => {
         return state.isLarryHappy && state.isJennyHappy
     }
-},
+}
   
 const mutations =  {
-
     //VideoPlayer
     setPlayer(state, player) {
       state.player = player;
@@ -62,7 +61,7 @@ const mutations =  {
       state.player.loop = bl;
       console.log('Set loop ' + bl);
     }
-  },
+}
   
 const actions = {
 
@@ -82,4 +81,12 @@ const actions = {
     setLoop(context, bl) {
       context.commit('setLoop', bl);
     }
+}
+
+export default {
+    namespaced: true,
+    state,
+    getters,
+    actions,
+    mutations
 }
