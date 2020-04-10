@@ -20,7 +20,7 @@ export default {
   name: 'VideoItem',
   methods: {
     changeMovie () {
-      this.$store.dispatch('changeMovie', this.item.id);
+      this.$store.dispatch('video/changeMovie', this.item.id);
     }
   },
 }

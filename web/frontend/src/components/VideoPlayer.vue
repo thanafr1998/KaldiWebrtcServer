@@ -12,7 +12,7 @@
 export default {
   name: 'VideoPlayer',
   mounted: function() {
-      this.$store.dispatch('setPlayer', document.getElementById("player"))
+      this.$store.dispatch('video/setPlayer', document.getElementById("player"))
   },
   methods: {
   },
