@@ -49,7 +49,7 @@
 export default {
   name: 'ControlBar',
   mounted: function() {
-      this.$store.dispatch('setPlayer', document.getElementById("player"))
+      this.$store.dispatch('video/setPlayer', document.getElementById("player"))
   },
   data: function() {
       return {
@@ -58,13 +58,13 @@ export default {
   },
   methods: {
       setSpeed: function(n) {
-          this.$store.dispatch('setSpeed', n);
+          this.$store.dispatch('video/setSpeed', n);
       },
       setResolution: function(n) {
-          this.$store.dispatch('setResolution', n);
+          this.$store.dispatch('video/setResolution', n);
       },
       setLoop: function(bl) {
-          this.$store.dispatch('setLoop', bl);
+          this.$store.dispatch('video/setLoop', bl);
       }
   },
   computed: {
