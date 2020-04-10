@@ -69,22 +69,22 @@ export default {
   },
   computed: {
       currentMovie() {
-          return this.$store.state.currentMovie;
+          return this.$store.state.video.currentMovie;
       },
       currentSource() {
-          return this.$store.state.currentSource;
+          return this.$store.state.video.currentSource;
       },
       player() {
-          return this.$store.state.player;
+          return this.$store.state.video.player;
       },
       currentSpeed() {
-          return this.$store.state.currentSpeed;
+          return this.$store.state.video.currentSpeed;
       },
       isManyResolution() {
-          return Array.isArray(this.$store.state.currentMovie.source);
+          return Array.isArray(this.$store.state.video.currentMovie.source);
       },
       isLoop() {
-          return this.$store.state.isLoop;
+          return this.$store.state.video.isLoop;
       }
   }
   
