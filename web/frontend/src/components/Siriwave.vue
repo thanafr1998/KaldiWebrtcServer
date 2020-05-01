@@ -7,9 +7,6 @@ import SiriWave from 'siriwave';
 // let wave;
 export default {
     name : "siriWave",
-    data : ()=>{
-
-    },
     mounted() {
         let m = new SiriWave({
             container: document.getElementById('siri-container'),

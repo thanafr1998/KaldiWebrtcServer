@@ -189,7 +189,7 @@ export default {
         setTimeout(() => {
             this.pc.close();
         }, 500);
-    }
+    },
   }
   
 }

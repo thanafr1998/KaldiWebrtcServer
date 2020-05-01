@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <v-app>
     <v-hover>
       <v-card
         class="mx-auto"
@@ -33,7 +33,7 @@
       <Recognitor></Recognitor>
       </v-card>
     </v-hover>
-  </div>
+  </v-app>
 </template>
 
 <script>
