@@ -8,26 +8,12 @@
         bottom
         right
         fixed
+        color='red'
         style='margin-bottom: 3rem;'
         v-if="statusField!=='START'"
         @click="start()"
         >
-            <v-icon>mdi-circle</v-icon>
-        </v-btn>
-        <v-btn
-        id="stop"
-        absolute
-        dark
-        fab
-        bottom
-        right
-        fixed
-        color="pink"
-        style='margin-bottom: 3rem;'
-        v-if="statusField==='START'"
-        @click="stop()"
-        >
-            <v-icon>mdi-stop</v-icon>
+            <v-icon>mdi-microphone</v-icon>
         </v-btn>
     </div>
 </template>

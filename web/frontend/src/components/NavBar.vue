@@ -40,7 +40,7 @@ export default {
   computed : {
     isLogin() {
             return this.$store.state.auth.isLogin;
-    },
+    }
   },
   data : function() {
 return {
