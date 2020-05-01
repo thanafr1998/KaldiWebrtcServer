@@ -8,7 +8,6 @@
       fill-dot
       right
     >
-
       <v-card
         :elevation="20"
         class="mx-auto card-favourite"
@@ -19,6 +18,8 @@
   </v-timeline> 
 </template>
 <script>
+import { mapGetters } from 'vuex'
+
 import VideoItem from '../components/VideoItem'
 export default {
   name : 'Favourite',
@@ -26,9 +27,12 @@ export default {
       VideoItem
   },
   computed: {
-    movieList() {
-        return this.$store.state.video.movieList;
-    }
+     movieList() {
+       return this.$store.getters.auth.movieList
+     }
+  },
+  mounted() {
+    this.$store.dispatch('auth/fetchFavoriteList');
   }
 }
 </script>>

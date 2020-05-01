@@ -33,6 +33,7 @@
       <Recognitor></Recognitor>
       </v-card>
     </v-hover>
+    <SnackAlert />
   </v-app>
 </template>
 
@@ -41,12 +42,15 @@
 import NavBar from './components/NavBar.vue'
 import Recognitor from './components/Recognitor.vue'
 import Siriwave from './components/Siriwave'
+import SnackAlert from './components/SnackBar'
+
 export default {
   name: 'App',
   components: {
     NavBar,
     Recognitor,
-    Siriwave
+    Siriwave,
+    SnackAlert
   },
   computed:{
     transcribeMessage() {
