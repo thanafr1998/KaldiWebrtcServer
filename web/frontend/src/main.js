@@ -6,9 +6,10 @@ import store from '@/store'
 import DefaultRecorder from './views/DefaultRecorder'
 import VideoMain from './views/VideoMain'
 import vuetify from './plugins/vuetify';
-
+// import VueWaves from 'vue-waves';
 
 Vue.use(VueRouter)
+// Vue.use(require('vue-script2'))
 
 Vue.config.productionTip = false
 

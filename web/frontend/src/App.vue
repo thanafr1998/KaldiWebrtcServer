@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <v-hover>
-      <!-- <template v-slot:default="{ hover }"> -->
       <v-card
         class="mx-auto"
         width="100%"
@@ -17,15 +16,27 @@
           <div class="overlay-content">
             <v-row>
               <p class="display-4 font-weight-bold">{{transcribeMessage}}</p>
+
+              <div id="siri-container"></div>
+                  <script2>
+                  new SiriWave({
+                    container: document.getElementById('siri-container'),
+                    width: 640,
+                    height: 200,
+                     style : "ios9",
+                     autostart: true
+                  });
+                  </script2>
             </v-row>
           </div>
+          <button v-waves.button>Vue-Waves</button>
+          <i class="fa fa-times" v-waves.circle></i>
         </v-overlay>
       </v-fade-transition>
       <NavBar/>
       <router-view>
       </router-view>
       </v-card>
-    <!-- </template> -->
     </v-hover>
   </div>
 </template>
@@ -50,7 +61,7 @@ export default {
     overlay() {
       return this.$store.state.search.overlay;
     }
-  },
+  }
 }
 </script>
 
