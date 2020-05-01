@@ -3,12 +3,14 @@ import Vuex from 'vuex'
 import video from './modules/video'
 import auth from './modules/auth'
 import notification from './modules/notification'
+import page from './modules/page'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   modules: {
     video,
     auth,
-    notification
+    notification,
+    page
   }
 })
