@@ -15,7 +15,7 @@ const mutations = {
       state.trabscribeState = status
     },
     changeMessage(state, message) {
-      state.transcribe = message
+      state.transcribeMessage = message;
     }
 }
 const actions= {
@@ -25,7 +25,7 @@ const actions= {
     // number = setTimeout(() => commit('reset'), 2500);
   },
   listen ({ commit }) {
-    commit('changeMessage', "listening Govajee command .....")
+    // commit('changeMessage', "listening Govajee command .....")
     commit('changeTranscribeState', "listen");
   },
   wait ({commit}) {
@@ -33,6 +33,11 @@ const actions= {
   },
   close ({ commit }) {
     commit('changeTranscribeState', "close");
+  },
+  changeMessage({ commit }, msg) {
+    if(msg.length > 0 || msg !== ' '){
+      commit('changeMessage', msg);
+    }
   }
 }
 
