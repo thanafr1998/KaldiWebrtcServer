@@ -80,6 +80,27 @@ const actions= {
       case 'ปรับ คุณภาพ วิดีโอ ระดับ สูง':
         dispatch('video/setResolution', 1080, {root:true});
         break;
+      case 'ล็อกอิน นาม บี':
+        dispatch('auth/login', "บี", {root:true});
+        break
+      case 'ล็อกอิน นาม ตาล':
+        dispatch('auth/login', "บี", {root:true});
+        break
+      case 'ล็อกอิน นาม แตงไทย':
+        dispatch('auth/login', "แตงไทย", {root:true});
+        break
+      case 'ล็อกอิน นาม ฟร้องซ์':
+        dispatch('auth/login', "ฟร้องซ์", {root:true});
+        break
+      case 'ล็อกเอาท์':
+        dispatch('auth/logout',null, {root:true});
+        break
+      case 'ตั้ง เป็น รายการ โปรด':
+        dispatch('auth/addFavorite', null, {root:true});
+        break
+      case 'เอา ออก จาก รายการ โปรด':
+        dispatch('auth/removeFavorite',null, {root:true});
+        break
     }
   }
 }
