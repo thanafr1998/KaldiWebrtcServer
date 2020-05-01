@@ -84,7 +84,7 @@ const actions= {
         dispatch('auth/login', "บี", {root:true});
         break
       case 'ล็อกอิน นาม ตาล':
-        dispatch('auth/login', "บี", {root:true});
+        dispatch('auth/login', "ตาล", {root:true});
         break
       case 'ล็อกอิน นาม แตงไทย':
         dispatch('auth/login', "แตงไทย", {root:true});
