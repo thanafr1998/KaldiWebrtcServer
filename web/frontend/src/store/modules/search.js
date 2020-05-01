@@ -13,6 +13,7 @@ const mutations = {
         state.overlay = true
       } else if(status == "close") {
         state.overlay = false
+        state.transcribeMessage = '';
       }
       state.trabscribeState = status
     },
@@ -42,8 +43,8 @@ const actions= {
       commit('changeMessage', msg);
     }
   },
-  executeInstruction({ commit, dispatch }, instuction) {
-    
+  executeInstruction({ commit, dispatch }, instruction) {
+      
   }
 }
 
