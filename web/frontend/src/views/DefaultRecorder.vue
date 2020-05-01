@@ -89,7 +89,7 @@ export default {
     start: function() {
         this.statusField = 'Connecting...';
         this.$store.dispatch('search/start')
-
+    
         var config = {
             sdpSemantics: 'unified-plan'
         };

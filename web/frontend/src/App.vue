@@ -16,21 +16,11 @@
           <div class="overlay-content">
             <v-row>
               <p class="display-4 font-weight-bold">{{transcribeMessage}}</p>
-
-              <div id="siri-container"></div>
-                  <script2>
-                  new SiriWave({
-                    container: document.getElementById('siri-container'),
-                    width: 640,
-                    height: 200,
-                     style : "ios9",
-                     autostart: true
-                  });
-                  </script2>
+              <!-- <Siriwave></Siriwave> -->
             </v-row>
           </div>
-          <button v-waves.button>Vue-Waves</button>
-          <i class="fa fa-times" v-waves.circle></i>
+          <!-- <button v-waves.button>Vue-Waves</button>
+          <i class="fa fa-times" v-waves.circle></i> -->
         </v-overlay>
       </v-fade-transition>
       <NavBar/>
@@ -43,13 +33,16 @@
 </template>
 
 <script>
+
 import NavBar from './components/NavBar.vue'
 import Recognitor from './components/Recognitor.vue'
+// import Siriwave from './components/Siriwave'
 export default {
   name: 'App',
   components: {
     NavBar,
-    Recognitor
+    Recognitor,
+    // Siriwave
   },
   computed:{
     transcribeMessage() {

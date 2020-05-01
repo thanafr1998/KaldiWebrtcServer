@@ -115,6 +115,7 @@ export default {
             console.log('Opened data channel');
         };
         this.dc.onmessage = evt => {
+
             this.statusField = 'Listening...';
             this.$store.dispatch('search/listen')
             var msg = evt.data;

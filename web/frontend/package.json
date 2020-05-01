@@ -45,10 +45,7 @@
     },
     "rules": {
       "no-console": 1,
-      "no-debugger": 1,
-      "no-unused-vars": [
-        "error"
-      ]
+      "no-debugger": 1
     }
   },
   "browserslist": [
