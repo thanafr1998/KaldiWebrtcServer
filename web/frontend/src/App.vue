@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <v-app>
     <v-hover>
       <!-- <template v-slot:default="{ hover }"> -->
       <v-card
@@ -29,7 +29,7 @@
 
     <!-- </template> -->
     </v-hover>
-  </div>
+  </v-app>
 </template>
 
 <script>

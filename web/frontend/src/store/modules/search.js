@@ -5,7 +5,8 @@ const state =  {
     trabscribeState : "close",
     opacity : 0.8,
     overlay : false,
-    instructions: INSTRUCTIONS
+    instructions: INSTRUCTIONS,
+    currentInstruction: '',
 }
 const mutations = {
     changeTranscribeState(state, status){
@@ -20,6 +21,20 @@ const mutations = {
     changeMessage(state, message) {
       state.transcribeMessage = message;
     },
+    findInstruction(state) {
+      let maxLength = -1;
+      let maxString = '';
+      for(let i = 0; i < state.instructions.length; i++){
+        if(state.transcribeMessage.includes(state.instructions[i])){
+          if(state.instructions[i].length > maxLength){
+            maxLength = state.instructions[i].length;
+            maxString = state.instructions[i];
+          }
+        }
+      }
+      state.currentInstruction = maxString;
+      console.log('currentInstruction: ' + maxString);
+    }
 }
 const actions= {
   start({ commit }) {
@@ -34,8 +49,10 @@ const actions= {
   wait ({commit}) {
     commit('changeTranscribeState', "wait");
   },
-  close ({ commit }) {
+  close ({ commit, dispatch, state }) {
+    commit('findInstruction')
     commit('changeTranscribeState', "close");
+    this.dispatch('search/executeInstruction');
   },
   changeMessage({ commit }, msg) {
     msg = msg.trim();
@@ -43,8 +60,18 @@ const actions= {
       commit('changeMessage', msg);
     }
   },
-  executeInstruction({ commit, dispatch }, instruction) {
-      
+  executeInstruction({ commit, dispatch, state }) {
+    switch(state.currentInstruction) {
+      case 'ปรับ คุณภาพ วิดีโอ ระดับ ต่ำ':
+        dispatch('video/setResolution', 360, {root:true});
+        break;
+      case  'ปรับ คุณภาพ วิดีโอ ระดับ กลาง':
+        dispatch('video/setResolution', 720, {root:true});
+        break;
+      case 'ปรับ คุณภาพ วิดีโอ ระดับ สูง':
+        dispatch('video/setResolution', 1080, {root:true});
+        break;
+    }
   }
 }
 
