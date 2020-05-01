@@ -8,7 +8,7 @@
         <div class="container">
             <v-timeline align-top dense class="align-fav">
               <v-timeline-item
-                v-for="n in videoNums" :key="n" color="red" :icon="n" fill-dotright>
+                v-for="n in videoNums" :key="n" color="red" :icon="n" fill-dot right>
                 <v-card
                   :elevation="20"
                   class="mx-auto card-favourite">
