@@ -9,7 +9,7 @@ const state =  {
 }
 const mutations = {
     changeTranscribeState(state, status){
-      if(status == "start"){
+      if(status == "listen"){
         state.overlay = true
       } else if(status == "close") {
         state.overlay = false
