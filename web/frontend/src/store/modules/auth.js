@@ -16,6 +16,7 @@ const mutations =  {
     ...cloneDeep(baseMutations),
     login(state, who) {
         state.who = who;
+        
         state.isLogin = true
     },
     logout(state) {
