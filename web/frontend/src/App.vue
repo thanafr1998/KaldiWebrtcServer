@@ -24,7 +24,9 @@
       <NavBar/>
       <router-view>
       </router-view>
+      <Recognitor></Recognitor>
       </v-card>
+
     <!-- </template> -->
     </v-hover>
   </div>
@@ -32,10 +34,12 @@
 
 <script>
 import NavBar from './components/NavBar.vue'
+import Recognitor from './components/Recognitor.vue'
 export default {
   name: 'App',
   components: {
-    NavBar
+    NavBar,
+    Recognitor
   },
   computed:{
     transcribeMessage() {
