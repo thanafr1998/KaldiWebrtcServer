@@ -1,12 +1,20 @@
 <template>
-    <div class="d-flex">
-            <div id="output" class='d-flex justify-content-left mr-2 width-100'>
-                <span v-for="(msg, i) in transcriptionOutput" :key="i">{{msg}}</span>
-            </div>
-            <div class='d-flex mr-2'>
-                <button class="btn btn-success" id="start" v-if="statusField==='START'" @click="start()">{{statusField}}</button>
-                <button class="btn btn-danger" id="stop" v-if="statusField!=='START'" @click="stop()">{{statusField}}</button>
-            </div>
+    <div class='container'>
+        <v-btn
+        id="start"
+        absolute
+        dark
+        fab
+        bottom
+        right
+        fixed
+        color='red'
+        style='margin-bottom: 3rem;'
+        v-if="statusField!=='START'"
+        @click="start()"
+        >
+            <v-icon>mdi-microphone</v-icon>
+        </v-btn>
     </div>
 </template>
 
@@ -18,10 +26,15 @@ export default {
           pc: null,
           dc: null,
           dcInterval: null,
-          statusField: 'START',
+          statusField: 'PRESS START',
           transcriptionOutput: [],
           lastTrans: '',
           imcompleteTrans: '',
+      }
+  },
+  computed : {
+      countTranscribe() {
+          return this.$store.state.transcribe.countTranscribe;
       }
   },
   methods: {
@@ -64,11 +77,12 @@ export default {
             return this.pc.setRemoteDescription(answer);
         }).catch(e => {
             console.log(e);
-            this.statusField = "START";
+            this.statusField = "PRESS START";
         });
     },
     start: function() {
         this.statusField = 'Connecting...';
+        this.$store.dispatch('search/start')
 
         var config = {
             sdpSemantics: 'unified-plan'
@@ -81,14 +95,26 @@ export default {
         this.dc.onclose = () => {
             clearInterval(this.dcInterval);
             console.log('Closed data channel');
-            this.statusField = "START";
+            this.statusField = "PRESS START";
         };
         this.dc.onopen = () => {
             console.log('Opened data channel');
         };
         this.dc.onmessage = evt => {
+
             this.statusField = 'Listening...';
+            this.$store.dispatch('search/listen')
             var msg = evt.data;
+            this.$store.dispatch('transcribe/count')
+            console.log(msg);
+            this.$store.dispatch('search/changeMessage', msg);
+            //detect message in command shutdown immediately 
+
+            // resetCount stop show overlay
+            if(this.countTranscribe > 8) {
+                this.$store.dispatch('transcribe/resetCount')
+                this.stop()
+            }
             if (msg.endsWith('\n')) {
                 this.lastTrans = this.imcompleteTrans + msg.substring(0, msg.length - 1);
                 this.transcriptionOutput.push(this.lastTrans);
@@ -105,7 +131,7 @@ export default {
         this.pc.oniceconnectionstatechange = () => {
             if (this.pc.iceConnectionState == 'disconnected') {
                 console.log('Disconnected');
-                this.statusField = "START";
+                this.statusField = "PRESS START";
             }
         }
 
@@ -121,11 +147,12 @@ export default {
             return this.negotiate();
         }, err => {
             console.log('Could not acquire media: ' + err);
-            this.statusField = "START";
+            this.statusField = "PRESS START";
         });
     },
     stop: function() {
         // close data channel
+        this.$store.dispatch('search/close')
         if (this.dc) {
             this.dc.close();
         }
@@ -148,12 +175,13 @@ export default {
         setTimeout(() => {
             this.pc.close();
         }, 500);
-    }
+    },
   }
   
 }
 
 </script>
+
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>

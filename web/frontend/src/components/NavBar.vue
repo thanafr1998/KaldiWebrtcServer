@@ -13,19 +13,27 @@
       <li class="nav-item">
         <router-link class="nav-link" to="/default-recorder">Default Recorder</router-link>
       </li>
+      <li class="nav-item">
+        <router-link class="nav-link" to="/Favourite">Favourite</router-link>
+      </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       
     </form>
     <button class="btn btn-outline-success my-2 my-sm-0 ml-2" type="button" @click ="searchPage">Search</button>
-    <button class="btn btn-outline-success my-2 my-sm-0 ml-2" @click="process"> {{ (isLogin) ? "Logout": "Login"  }}</button>
+    <button class="btn btn-outline-success my-2 my-sm-0 ml-2 spacing" @click="process"> {{ (isLogin) ? "Logout": "Login"  }}</button>
+    <v-avatar>
+      <img
+        src="https://cdn.vuetifyjs.com/images/john.jpg"
+        alt="John"
+      >
+    </v-avatar>
   </div>
 </nav>
 </template>
 
 <script>
-
 export default {
   name: 'NavBar',
   components: {
@@ -33,8 +41,13 @@ export default {
   computed : {
     isLogin() {
             return this.$store.state.auth.isLogin;
-    },
+    }
   },
+  data : function() {
+return {
+    // searching : false
+  };
+},
   methods : {
     searchPage(){
       // this.$router.push('/searchPage');
@@ -44,6 +57,10 @@ export default {
     },
     process() {
       (this.isLogin) ? this.logout() : this.login()
+      // this.searching = true
+      // setTimeout(() => {
+      //      this.searching = false
+      //   }, 2000);
       // console.log(this.s)
     },
     async login() {
@@ -60,4 +77,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+ .spacing {
+   margin-left: 10px;
+   margin-right: 10px;
+ }
 </style>

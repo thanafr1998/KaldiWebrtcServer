@@ -6,8 +6,5 @@ COPY package*.json ./
 RUN npm install -g @vue/cli; \
     npm install
 
-COPY . .
-
 EXPOSE 3000
-
 CMD [ "npm","run", "serve"]
