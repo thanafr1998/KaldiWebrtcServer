@@ -1,8 +1,6 @@
 <template>
     <div>
-
         <div class="jumbotron">
-
             <div class="container">
                 <div>
                     <h1 class="display-4">Kaldi live speech recognition demo</h1>
@@ -12,7 +10,6 @@
             </div>
         </div>
         <div class="container">
-
             <p>
                 <button class="btn btn-success" id="start" v-if="statusField==='PRESS START'" @click="start()">Start</button>
                 <button class="btn btn-danger" id="stop" v-if="statusField!=='PRESS START'" @click="stop()">Stop</button>
@@ -92,7 +89,7 @@ export default {
     start: function() {
         this.statusField = 'Connecting...';
         this.$store.dispatch('search/start')
-
+    
         var config = {
             sdpSemantics: 'unified-plan'
         };

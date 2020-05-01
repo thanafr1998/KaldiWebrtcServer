@@ -1,45 +1,52 @@
 <template>
   <v-app>
     <v-hover>
-      <!-- <template v-slot:default="{ hover }"> -->
       <v-card
         class="mx-auto"
         width="100%"
       >
-       <v-fade-transition>
+       <!-- <v-fade-transition> -->
           <v-overlay
             light
-            v-if="overlay"
+            v-show="overlay"
             :absolute="absolute"
             :opacity="opacity"
             color="#036358"
           >
           <div class="overlay-content">
-            <v-row>
-              <p class="display-4 font-weight-bold">{{transcribeMessage}}</p>
-            </v-row>
+            <v-col>
+              <v-row>
+                <p class="display-4 font-weight-bold">{{transcribeMessage}}</p>
+              </v-row>
+              <v-row>
+                <Siriwave></Siriwave>
+              </v-row>
+            </v-col>
           </div>
+          <!-- <button v-waves.button>Vue-Waves</button>
+          <i class="fa fa-times" v-waves.circle></i> -->
         </v-overlay>
-      </v-fade-transition>
+      <!-- </v-fade-transition> -->
       <NavBar/>
       <router-view>
       </router-view>
       <Recognitor></Recognitor>
       </v-card>
-
-    <!-- </template> -->
     </v-hover>
   </v-app>
 </template>
 
 <script>
+
 import NavBar from './components/NavBar.vue'
 import Recognitor from './components/Recognitor.vue'
+import Siriwave from './components/Siriwave'
 export default {
   name: 'App',
   components: {
     NavBar,
-    Recognitor
+    Recognitor,
+    Siriwave
   },
   computed:{
     transcribeMessage() {
@@ -54,7 +61,7 @@ export default {
     overlay() {
       return this.$store.state.search.overlay;
     }
-  },
+  }
 }
 </script>
 

@@ -8,9 +8,18 @@ const state =  {
     instructions: INSTRUCTIONS,
     currentInstruction: '',
 }
+// require('howler');
+let audio = new Audio({
+  src: "https://drive.google.com/a/chula.ac.th/file/d/1cAajRGkm3bLe0TkREhJ3tbQnHyRbWSB6/view?usp=sharing",
+  volume: 0.5,
+})
 const mutations = {
     changeTranscribeState(state, status){
-      if(status == "start"){
+      if(status == "start") {
+        state.trabscribeState = "Waiting me prep"
+        audio.play();
+      } else if(status == "listen"){
+        state.trabscribeState = "Listening ..."
         state.overlay = true
       } else if(status == "close") {
         state.overlay = false
