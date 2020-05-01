@@ -1,9 +1,11 @@
+import INSTRUCTIONS from '../../assets/instructions'
 
 const state =  {
     transcribeMessage : "Default Message",
     trabscribeState : "close",
     opacity : 0.8,
-    overlay : false
+    overlay : false,
+    instructions: INSTRUCTIONS
 }
 const mutations = {
     changeTranscribeState(state, status){
@@ -16,7 +18,7 @@ const mutations = {
     },
     changeMessage(state, message) {
       state.transcribeMessage = message;
-    }
+    },
 }
 const actions= {
   start({ commit }) {
@@ -35,9 +37,13 @@ const actions= {
     commit('changeTranscribeState', "close");
   },
   changeMessage({ commit }, msg) {
-    if(msg.length > 0 || msg !== ' '){
+    msg = msg.trim();
+    if(msg && msg != '<s>'){
       commit('changeMessage', msg);
     }
+  },
+  executeInstruction({ commit, dispatch }, instuction) {
+    
   }
 }
 
