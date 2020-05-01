@@ -3,7 +3,7 @@ const state =  {
     transcribeMessage : "Default Message",
     trabscribeState : "close",
     opacity : 0.8,
-    overlay : true
+    overlay : false
 }
 const mutations = {
     changeTranscribeState(state, status){

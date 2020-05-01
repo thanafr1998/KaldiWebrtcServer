@@ -3,7 +3,7 @@ import App from './App.vue'
 import VueRouter from 'vue-router'
 import store from '@/store'
 
-import DefaultRecorder from './components/DefaultRecorder'
+import DefaultRecorder from './views/DefaultRecorder'
 import VideoMain from './views/VideoMain'
 import vuetify from './plugins/vuetify';
 

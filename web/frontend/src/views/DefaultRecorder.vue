@@ -41,6 +41,11 @@ export default {
           imcompleteTrans: '',
       }
   },
+  computed : {
+      countTranscribe() {
+          return this.$store.state.transcribe.countTranscribe;
+      }
+  },
   methods: {
     negotiate: function() {
         console.log('negotiate');
@@ -86,6 +91,7 @@ export default {
     },
     start: function() {
         this.statusField = 'Connecting...';
+        this.$store.dispatch('search/start')
 
         var config = {
             sdpSemantics: 'unified-plan'
@@ -105,8 +111,17 @@ export default {
         };
         this.dc.onmessage = evt => {
             this.statusField = 'Listening...';
+            this.$store.dispatch('search/listen')
             var msg = evt.data;
+            this.$store.dispatch('transcribe/count')
             console.log(msg);
+            //detect message in command shutdown immediately 
+
+            // resetCount stop show overlay
+            if(this.countTranscribe > 8) {
+                this.$store.dispatch('transcribe/resetCount')
+                this.stop()
+            }
             if (msg.endsWith('\n')) {
                 this.lastTrans = this.imcompleteTrans + msg.substring(0, msg.length - 1);
                 this.transcriptionOutput.push(this.lastTrans);
@@ -144,6 +159,7 @@ export default {
     },
     stop: function() {
         // close data channel
+        this.$store.dispatch('search/close')
         if (this.dc) {
             this.dc.close();
         }
