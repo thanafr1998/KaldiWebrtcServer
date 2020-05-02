@@ -13,7 +13,7 @@ const videoSource = [
   
   
   const DATA = [{
-    id: 'gdbzhhifhh',
+    id: '1',
     title: '5 Centimeters per Second',
     author: 'Makoto Shinkai',
     date: '2007',
@@ -23,9 +23,9 @@ const videoSource = [
     cover2: 'https://img1.wxzxzj.com/vpc-example-cover-5cm-v.jpg',
     cover3: 'https://img1.wxzxzj.com/vpc-example-cover-5cm-c.jpg',
     source: 'https://media.vued.vanthink.cn/5%20Centimeters%20Per%20Second%20Trailer%20HD.mp4',
-    duration: '1:02:35'
+    duration: '1:02:35',
   }, {
-    id: 'hfkhzwgnwx',
+    id: '2',
     title: 'The Garden of Words',
     author: 'Makoto Shinkai',
     date: '2013',
@@ -37,7 +37,7 @@ const videoSource = [
     source: 'https://media.vued.vanthink.cn/the_garden_of_words_trailer_english__1080p.mp4',
     duration: '00:46:04'
   },  {
-    id: 'jiytmghmyo',
+    id: '3',
     title: 'Your Name',
     author: 'Makoto Shinkai',
     date: '2016',
@@ -49,7 +49,7 @@ const videoSource = [
     source: videoSource,
     duration: '01:46:04'
   }, {
-    id: 'szmnyobnap',
+    id: '4',
     title: 'Weathering with You',
     author: 'Makoto Shinkai',
     date: '2019',
@@ -61,7 +61,7 @@ const videoSource = [
     source: 'https://media.vued.vanthink.cn/y2mate.com%20-%20Weathering%20With%20You%20%5BOfficial%20Subtitled%20Trailer,%20GKIDS%5D_Q6iK6DjV_iE_1080p.mp4',
     duration: '01:51:00'
   },{
-    id: 'szmnyobnap',
+    id: '5',
     title: 'Weathering with You',
     author: 'Makoto Shinkai',
     date: '2019',
@@ -73,7 +73,7 @@ const videoSource = [
     source: 'https://media.vued.vanthink.cn/y2mate.com%20-%20Weathering%20With%20You%20%5BOfficial%20Subtitled%20Trailer,%20GKIDS%5D_Q6iK6DjV_iE_1080p.mp4',
     duration: '01:51:00'
   }, {
-    id: 'szmnyobnap',
+    id: '6',
     title: 'Weathering with You',
     author: 'Makoto Shinkai',
     date: '2019',
@@ -85,7 +85,7 @@ const videoSource = [
     source: 'https://media.vued.vanthink.cn/y2mate.com%20-%20Weathering%20With%20You%20%5BOfficial%20Subtitled%20Trailer,%20GKIDS%5D_Q6iK6DjV_iE_1080p.mp4',
     duration: '01:51:00'
   }, {
-    id: 'szmnyobnap',
+    id: '7',
     title: 'Weathering with You',
     author: 'Makoto Shinkai',
     date: '2019',

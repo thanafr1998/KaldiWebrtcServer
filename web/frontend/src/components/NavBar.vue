@@ -13,7 +13,7 @@
       <li class="nav-item">
         <router-link class="nav-link" to="/default-recorder">Default Recorder</router-link>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" v-if="isLogin">
         <router-link class="nav-link" to="/Favourite">Favourite</router-link>
       </li>
       <li class="nav-item">
