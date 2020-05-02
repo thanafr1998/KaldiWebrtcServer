@@ -15,4 +15,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker-compose up --build
+      run: |
+        git clone https://github.com/beesk135/asr_model.git model
+        docker-compose up --build
