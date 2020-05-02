@@ -107,6 +107,11 @@ const actions= {
       case 'เอา ออก จาก รายการ โปรด':
         dispatch('auth/removeFavorite',null, {root:true});
         break
+      case 'ปิด โปรแกรม' :
+        if(confirm('Are you going to close it?')) {
+          window.close()
+        }
+        break 
     }
   }
 }
