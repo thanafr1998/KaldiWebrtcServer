@@ -123,4 +123,3 @@ export default {
     background-image: url("../assets/bgblue.png");
   }
 </style>
-// cd ../assets/bg3.jpg
