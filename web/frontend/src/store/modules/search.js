@@ -137,6 +137,15 @@ const actions= {
         dispatch('video/changeMovie',"5",{root:true});
         window.scrollTo(0, 0);
         break
+      case 'ตั้ง เป็น วิดีโอ ทอป วัน':
+        dispatch('auth/addTopVideo', 1, {root:true});
+        break
+      case 'ตั้ง เป็น วิดีโอ ทอป ทู':
+        dispatch('auth/addTopVideo', 2, {root:true});
+        break
+      case 'ตั้ง เป็น วิดีโอ ทอป ทรี':
+        dispatch('auth/addTopVideo', 3, {root:true});
+        break
     }
   }
 }

@@ -11,6 +11,12 @@ const state = {
         "แตงไทย" : [],
         "ฟร้องซ์" : [],
     },
+    topList : {
+        "บี" : ['','',''],
+        "ตาล" : ['','',''],
+        "แตงไทย" : ['','',''],
+        "ฟร้องซ์" : ['','',''],
+    },
     who : ""
 }
   
@@ -53,6 +59,17 @@ const mutations =  {
         if(state.isLogin) {
             const data = state.favouriteList[state.who]
             state.favouriteList["test"] = data
+        }
+    },
+    addTopVideo(state,payload) {
+        console.log(`who : ${payload.who}, movieTop : ${payload.movie.title}, number : ${payload.number}`)
+        console.log(state.topList[payload.who])
+        state.topList[payload.who][payload.number-1] = payload.movie
+    },
+    refetchTopList(state){
+        if(state.isLogin) {
+            const data = state.topList[state.who]
+            state.topList["test"] = data
         }
     }
 }
@@ -117,6 +134,29 @@ const actions = {
     },
     fetchFavoriteList({commit}) {
         commit('refetchFavoriteList')
+    },
+    addTopVideo({commit, dispatch, rootState, state},number){
+        console.log(number);
+        if(state.isLogin) {
+            const movie = rootState.video.currentMovie
+            commit('addTopVideo', {
+                movie : movie,
+                who : state.who,
+                number : number
+            })
+            dispatch('notification/push',{
+                message : `add top ${number} video suceessfully`,
+                color : 'success'
+             }, {root:true})
+        } else {
+            dispatch('notification/push',{
+                message : `ฟังก์ชันไม่ถูกต้อง`,
+                color : 'error'
+             }, {root:true})
+        }
+    },
+    fetchTopList({commit}) {
+        commit('refetchTopList')
     }
 }
 

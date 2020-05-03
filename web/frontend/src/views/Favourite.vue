@@ -1,21 +1,44 @@
 <template>
- <v-timeline align-top dense class="align-fav">
-    <v-timeline-item
-      v-for="movie in favouriteList[who]"
-      :key="movie.id"
-      color="red"
-      icon="mdi-star"
-      fill-dot
-      right
-    >
-      <v-card
-        :elevation="20"
-        class="mx-auto card-favourite"
-      >
-        <VideoItem :key="movie.id" :item="movie"> </VideoItem>
-      </v-card>
-    </v-timeline-item>
-  </v-timeline> 
+  <div class="row">
+    <div class="col-8">
+      <v-timeline align-top dense class="align-fav">
+        <v-timeline-item
+          v-for="movie in favouriteList[who]"
+          :key="movie.id"
+          color="red"
+          icon="mdi-star"
+          fill-dot
+          right
+        >
+          <v-card
+            :elevation="20"
+            class="mx-auto card-favourite"
+          >
+            <VideoItem :key="movie.id" :item="movie"> </VideoItem>
+          </v-card>
+        </v-timeline-item>
+      </v-timeline> 
+    </div>
+    <div class="col-4">
+      <v-timeline align-top dense class="align-fav">
+        <v-timeline-item
+          v-for="movie in topList[who]"
+          :key="movie.id"
+          color="red"
+          icon="mdi-star"
+          fill-dot
+          right
+        >
+          <v-card
+            :elevation="20"
+            class="mx-auto card-favourite"
+          >
+            <VideoItem :key="movie.id" :item="movie"> </VideoItem>
+          </v-card>
+        </v-timeline-item>
+      </v-timeline> 
+    </div>
+  </div>
 </template>
 <script>
 
@@ -31,10 +54,14 @@ export default {
     },
      favouriteList() {
        return this.$store.state.auth.favouriteList
-     }
+    },
+    topList() {
+       return this.$store.state.auth.topList
+    }
   },
   mounted() {
     this.$store.dispatch('auth/fetchFavoriteList');
+    this.$store.dispatch('auth/fetchTopList');
   }
 }
 </script>>
