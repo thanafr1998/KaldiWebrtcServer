@@ -111,7 +111,32 @@ const actions= {
         if(confirm('Are you going to close it?')) {
           window.close()
         }
-        break 
+        break
+      case 'เลือก วิดีโอ หมายเลข หนึ่ง' :
+        dispatch('page/changePage', "/",{root:true});
+        dispatch('video/changeMovie',"1",{root:true});
+        window.scrollTo(0, 0);
+        break
+      case 'เลือก วิดีโอ หมายเลข สอง' :
+        dispatch('page/changePage', "/",{root:true});
+        dispatch('video/changeMovie',"2",{root:true});
+        window.scrollTo(0, 0);
+        break
+      case 'เลือก วิดีโอ หมายเลข สาม' :
+        dispatch('page/changePage', "/",{root:true});
+        dispatch('video/changeMovie',"3",{root:true});
+        window.scrollTo(0, 0);
+        break
+      case 'เลือก วิดีโอ หมายเลข สี่' :
+        dispatch('page/changePage', "/",{root:true});  
+        dispatch('video/changeMovie',"4",{root:true});
+        window.scrollTo(0, 0);
+        break
+      case 'เลือก วิดีโอ หมายเลข ห้า' :
+        dispatch('page/changePage', "/",{root:true});
+        dispatch('video/changeMovie',"5",{root:true});
+        window.scrollTo(0, 0);
+        break
     }
   }
 }
