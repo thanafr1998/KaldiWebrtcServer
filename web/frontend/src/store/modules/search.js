@@ -146,6 +146,11 @@ const actions= {
       case 'ตั้ง เป็น วิดีโอ ทอป ทรี':
         dispatch('auth/addTopVideo', 3, {root:true});
         break
+      case 'แสดง วิดีโอ อันดับ หนึ่ง ของ ฉัน' :
+        dispatch('page/changePage', "/",{root:true});
+        dispatch('video/changeMovie',this.$store.topList[0].id,{root:true});
+        window.scrollTo(0, 0);
+        break
     }
   }
 }

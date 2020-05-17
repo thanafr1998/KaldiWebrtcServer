@@ -28,6 +28,14 @@ const getters = {
         } else {
             return []
         }
+    },
+    topList: state => {
+        if(state.isLogin) {
+            console.log(state.topList[state.who])
+            return state.topList[state.who]
+        } else {
+            return []
+        }
     }
 }
   
@@ -45,7 +53,10 @@ const mutations =  {
     addFavorite(state, payload) {
         console.log(`who : ${payload.who}, movieFav : ${payload.movie.title}`)
         console.log(state.favouriteList[payload.who])
-        state.favouriteList[payload.who].push(payload.movie)
+        console.log(state.favouriteList[payload.who].indexof(payload.movie))
+        if(state.favouriteList[payload.who].indexof(payload.movie) == -1){
+            state.favouriteList[payload.who].push(payload.movie)
+        }
     },
     removeFavorite(state,payload) {
         console.log(`who : ${payload.who}, movieFav : ${payload.id}`)
@@ -143,6 +154,10 @@ const actions = {
                 movie : movie,
                 who : state.who,
                 number : number
+            })
+            commit('addFavorite', {
+                movie : movie,
+                who : state.who
             })
             dispatch('notification/push',{
                 message : `add top ${number} video suceessfully`,

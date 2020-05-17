@@ -1,6 +1,7 @@
 <template>
   <div class="row">
     <div class="col-8">
+      Favourite
       <v-timeline align-top dense class="align-fav">
         <v-timeline-item
           v-for="movie in favouriteList[who]"
@@ -20,15 +21,16 @@
       </v-timeline> 
     </div>
     <div class="col-4">
+      Top Video
       <v-timeline align-top dense class="align-fav">
         <v-timeline-item
           v-for="movie in topList[who]"
           :key="movie.id"
-          color="red"
+          color="yellow"
           icon="mdi-star"
           fill-dot
-          right
-        >
+          left
+        > 
           <v-card
             :elevation="20"
             class="mx-auto card-favourite"
